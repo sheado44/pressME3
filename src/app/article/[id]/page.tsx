@@ -1,6 +1,12 @@
 import Link from "next/link";
 
-export default function ArticlePage({ params }: { params: { id: string } }) {
+export default async function ArticlePage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+
   return (
     <main className="max-w-3xl mx-auto px-4 py-10">
       {/* Meta */}
