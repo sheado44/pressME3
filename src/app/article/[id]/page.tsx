@@ -1,188 +1,222 @@
 import Link from "next/link";
 
-export default async function ArticlePage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
+const sampleArticles = [
+  {
+    id: "1",
+    rank: 1,
+    section: "Sports",
+    category: "NFL",
+    title: "Why the Bears' Offensive Line Is Quietly Elite in 2026",
+    excerpt: "A deep dive into the advanced metrics that show Chicago's front is no longer a liability — and what it means for Caleb Williams' second year.",
+    author: "Jordan Reyes",
+    authorInitials: "JR",
+    authorColor: "bg-blue-600",
+    views: "12.4k",
+    comments: 48,
+    stars: 4.8,
+    emoji: "🏈",
+  },
+  {
+    id: "2",
+    rank: 2,
+    section: "Sports",
+    category: "NBA",
+    title: "The Quiet Revolution in NBA Load Management",
+    excerpt: "Teams are using real-time biometric data differently in 2026. Here's what the numbers actually show about rest vs. rhythm.",
+    author: "Aisha Lane",
+    authorInitials: "AL",
+    authorColor: "bg-purple-600",
+    views: "9.8k",
+    comments: 36,
+    stars: 4.6,
+    emoji: "🏀",
+  },
+  {
+    id: "3",
+    rank: 1,
+    section: "Pop Culture",
+    category: "Music",
+    title: "Why 2026 Touring Is Breaking the Old Festival Model",
+    excerpt: "Artists are skipping the big multi-day festivals in favor of their own controlled experiences. The data shows fans are following.",
+    author: "Maya Chen",
+    authorInitials: "MC",
+    authorColor: "bg-pink-600",
+    views: "8.1k",
+    comments: 52,
+    stars: 4.7,
+    emoji: "🎵",
+  },
+  {
+    id: "4",
+    rank: 3,
+    section: "Sports",
+    category: "Soccer",
+    title: "MLS Attendance Is Surging — But Not Where You Think",
+    excerpt: "Secondary markets and midweek games are driving unexpected growth. The data challenges the big-market narrative.",
+    author: "Tom Keller",
+    authorInitials: "TK",
+    authorColor: "bg-green-600",
+    views: "7.1k",
+    comments: 29,
+    stars: 4.5,
+    emoji: "⚽",
+  },
+];
 
+const topPublishers = [
+  { rank: 1, name: "Jordan Reyes", initials: "JR", color: "bg-blue-600", points: 1840, articles: 4 },
+  { rank: 2, name: "Maya Chen", initials: "MC", color: "bg-pink-600", points: 1620, articles: 5 },
+  { rank: 3, name: "Aisha Lane", initials: "AL", color: "bg-purple-600", points: 1490, articles: 3 },
+  { rank: 4, name: "Tom Keller", initials: "TK", color: "bg-green-600", points: 1310, articles: 4 },
+  { rank: 5, name: "Sam Rivera", initials: "SR", color: "bg-orange-600", points: 1180, articles: 3 },
+];
+
+export default function Home() {
   return (
-    <main className="max-w-3xl mx-auto px-4 py-10">
-      {/* Meta */}
-      <div className="flex flex-wrap items-center gap-2 text-sm text-gray-400 mb-4">
-        <span className="bg-forge-accent/20 text-forge-accent px-2.5 py-1 rounded font-medium">
-          #1 Ranked
-        </span>
-        <span className="bg-forge-800 px-2.5 py-1 rounded">NFL</span>
-        <span className="bg-forge-800 px-2.5 py-1 rounded">AI Score: 94</span>
-        <span>•</span>
-        <span>Aug 12, 2026</span>
-      </div>
+    <main className="min-h-screen">
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-600/20 via-transparent to-blue-900/30 pointer-events-none" />
+        <div className="max-w-6xl mx-auto px-4 pt-12 pb-10 relative">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3">
+            Ranked Writing by the Public
+          </h1>
+          <p className="text-2xl text-forge-accent font-medium italic mb-3">
+            “We don’t make sports fun. You do!”
+          </p>
+          <p className="text-gray-400 text-lg max-w-2xl mb-8">
+            Real takes. Real engagement. AI only helps keep quality high — the rankings come from readers.
+          </p>
 
-      <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-        Why the Bears&apos; Offensive Line Is Quietly Elite in 2026
-      </h1>
-
-      {/* Author */}
-      <div className="flex items-center justify-between mb-8 pb-6 border-b border-forge-800">
-        <Link href="/profile" className="flex items-center gap-3 group">
-          <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center font-bold text-lg">
-            JR
+          {/* Section pills */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            <button className="px-5 py-2 rounded-full bg-forge-accent text-white text-sm font-semibold shadow-lg shadow-orange-500/20">
+              All
+            </button>
+            <button className="px-5 py-2 rounded-full bg-forge-800 hover:bg-forge-700 text-sm font-medium transition">
+              Sports
+            </button>
+            <button className="px-5 py-2 rounded-full bg-forge-800 hover:bg-forge-700 text-sm font-medium transition">
+              Pop Culture
+            </button>
           </div>
-          <div>
-            <div className="font-medium group-hover:text-forge-accent transition">
-              Jordan Reyes
-            </div>
-            <div className="text-sm text-gray-400">
-              Publisher Rank #7 • 28 published articles
-            </div>
-          </div>
-        </Link>
-        <div className="text-sm text-gray-400 text-right">
-          <div>12.4k views</div>
-          <div>48 comments</div>
-        </div>
-      </div>
 
-      {/* Featured visual */}
-      <div className="w-full h-64 md:h-80 rounded-xl bg-gradient-to-br from-orange-700/50 to-blue-900/60 mb-8 flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-6xl mb-2">🏈</div>
-          <div className="text-sm text-orange-200 font-medium">
-            Chicago Bears OL – 2026 Season
+          <div className="flex gap-6 text-sm font-medium">
+            <button className="text-forge-accent border-b-2 border-forge-accent pb-1">Top Ranked</button>
+            <button className="text-gray-400 hover:text-white pb-1">Newest</button>
+            <button className="text-gray-400 hover:text-white pb-1">Rising</button>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Body */}
-      <div className="prose prose-invert max-w-none space-y-4">
-        <p className="text-lg text-gray-200">
-          For years, the Chicago Bears offensive line was a punchline. In 2026, the joke is over.
-        </p>
-        <p className="text-gray-300">
-          Advanced metrics from multiple independent sources now rank the Bears’ front five among the top units in the NFL — a transformation that has flown under the radar while the spotlight stays locked on Caleb Williams and the skill players.
-        </p>
-
-        <h2 className="text-2xl font-bold mt-8 mb-3">The Numbers Don’t Lie</h2>
-        <p className="text-gray-300">
-          According to next-gen tracking and independent film graders, Chicago currently sits:
-        </p>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-6">
-          {[
-            { value: "3rd", label: "Pass Block Win Rate" },
-            { value: "5th", label: "Run Block Efficiency" },
-            { value: "2nd", label: "Pressure Rate Allowed" },
-            { value: "1st", label: "Screen Success %" },
-          ].map((stat) => (
-            <div
-              key={stat.label}
-              className="bg-forge-900 border border-forge-700 rounded-lg p-4 text-center"
+      <div className="max-w-6xl mx-auto px-4 pb-16 grid lg:grid-cols-3 gap-8">
+        {/* Main feed */}
+        <div className="lg:col-span-2 space-y-5">
+          {sampleArticles.map((article) => (
+            <article
+              key={article.id}
+              className="group bg-forge-900/80 border border-forge-800 hover:border-forge-accent/50 rounded-2xl p-5 transition-all duration-200 hover:shadow-xl hover:shadow-orange-500/5"
             >
-              <div className="text-2xl font-bold text-forge-accent">{stat.value}</div>
-              <div className="text-xs text-gray-400 mt-1">{stat.label}</div>
-            </div>
+              <div className="flex gap-5">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
+                    <span className="bg-forge-accent/15 text-forge-accent px-2 py-0.5 rounded-md font-semibold">
+                      #{article.rank} {article.section}
+                    </span>
+                    <span>{article.category}</span>
+                    <span className="text-yellow-500">★ {article.stars}</span>
+                  </div>
+
+                  <Link href={`/article/${article.id}`}>
+                    <h2 className="text-xl font-bold mb-2 group-hover:text-forge-accent transition leading-snug">
+                      {article.title}
+                    </h2>
+                    <p className="text-gray-400 text-sm line-clamp-2 mb-4">
+                      {article.excerpt}
+                    </p>
+                  </Link>
+
+                  <div className="flex items-center gap-4 text-sm text-gray-500">
+                    <Link href="/profile" className="flex items-center gap-2 hover:text-white">
+                      <div className={`w-7 h-7 rounded-full ${article.authorColor} flex items-center justify-center text-xs font-bold`}>
+                        {article.authorInitials}
+                      </div>
+                      <span>{article.author}</span>
+                    </Link>
+                    <span>{article.views} views</span>
+                    <span>{article.comments} comments</span>
+                  </div>
+                </div>
+
+                <div className="hidden sm:flex w-28 h-28 rounded-xl bg-gradient-to-br from-forge-800 to-forge-900 items-center justify-center text-4xl shrink-0 border border-forge-700">
+                  {article.emoji}
+                </div>
+              </div>
+            </article>
           ))}
-        </div>
 
-        <p className="text-gray-300">
-          These aren’t vanity stats. They translate directly to time in the pocket and explosive run opportunities.
-        </p>
-
-        <blockquote className="border-l-4 border-forge-accent pl-4 my-6 italic text-orange-200">
-          “We’re not asking Caleb to be Superman every snap anymore. The line is giving him a chance to play on schedule.”
-          <br />
-          <span className="text-sm not-italic text-gray-400">
-            — Anonymous NFC North scout
-          </span>
-        </blockquote>
-
-        <h2 className="text-2xl font-bold mt-8 mb-3">What It Means Going Forward</h2>
-        <p className="text-gray-300">
-          A functional offensive line doesn’t just protect the quarterback. It changes play-calling philosophy, opens the playbook, and reduces the need for constant max-protect packages that telegraph the pass.
-        </p>
-        <p className="text-gray-300">
-          If the Bears can maintain this level of play through December, the narrative around the franchise will shift from “Will the line hold?” to “How high is the ceiling?”
-        </p>
-
-        <p className="text-gray-400 text-sm mt-10 pt-6 border-t border-forge-800">
-          AI Review Summary: Authenticity 96 • Accuracy 93 • Form 94 • Overall 94
-          <br />
-          This article passed automated review on Aug 12, 2026.
-        </p>
-      </div>
-
-      {/* Reactions */}
-      <div className="flex items-center gap-4 mt-8 pt-6 border-t border-forge-800">
-        <button className="flex items-center gap-2 px-4 py-2 bg-forge-800 hover:bg-forge-700 rounded-lg text-sm transition">
-          👍 842
-        </button>
-        <button className="flex items-center gap-2 px-4 py-2 bg-forge-800 hover:bg-forge-700 rounded-lg text-sm transition">
-          💬 48
-        </button>
-        <button className="flex items-center gap-2 px-4 py-2 bg-forge-800 hover:bg-forge-700 rounded-lg text-sm transition">
-          Share
-        </button>
-      </div>
-
-      {/* Comments */}
-      <section className="mt-12">
-        <h3 className="text-xl font-bold mb-2">Comments</h3>
-        <p className="text-sm text-gray-400 mb-6">
-          Free speech zone — any legal speech is welcome. Keep it about the game.
-        </p>
-
-        <div className="bg-forge-900 border border-forge-800 rounded-xl p-4 mb-6">
-          <textarea
-            placeholder="Add your take..."
-            className="w-full bg-transparent border-0 focus:ring-0 text-gray-200 placeholder-gray-500 resize-none h-20 outline-none"
-          />
-          <div className="flex justify-end mt-2">
-            <button className="bg-forge-accent hover:bg-forge-accentHover text-white text-sm font-medium px-4 py-1.5 rounded-lg transition">
-              Post Comment
+          <div className="text-center pt-4">
+            <button className="px-8 py-3 bg-forge-800 hover:bg-forge-700 rounded-xl text-sm font-medium transition">
+              Load More Articles
             </button>
           </div>
         </div>
 
-        <div className="space-y-5">
-          {[
-            {
-              initials: "DK",
-              color: "bg-green-700",
-              name: "Derek K.",
-              time: "2h ago",
-              text: "Finally someone posting the actual film grades instead of the same old “Bears line is bad” narrative. The right tackle improvement alone is massive.",
-            },
-            {
-              initials: "SR",
-              color: "bg-red-700",
-              name: "Sam R.",
-              time: "4h ago",
-              text: "I’m still skeptical until we see them against the better edge rushers in December. But the data is hard to argue with right now.",
-            },
-          ].map((c) => (
-            <div key={c.name} className="flex gap-3">
-              <div
-                className={`w-9 h-9 rounded-full ${c.color} flex items-center justify-center text-sm font-bold shrink-0`}
-              >
-                {c.initials}
-              </div>
-              <div>
-                <div className="flex items-center gap-2 text-sm">
-                  <span className="font-medium">{c.name}</span>
-                  <span className="text-gray-500">{c.time}</span>
-                </div>
-                <p className="text-gray-300 mt-1">{c.text}</p>
-                <div className="flex gap-3 mt-2 text-xs text-gray-500">
-                  <button className="hover:text-forge-accent">Like</button>
-                  <button className="hover:text-forge-accent">Reply</button>
-                </div>
-              </div>
+        {/* Sidebar - Publisher Leaderboard */}
+        <aside className="space-y-6">
+          <div className="bg-forge-900 border border-forge-800 rounded-2xl p-5 sticky top-24">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-bold text-lg">Publisher Leaderboard</h3>
+              <span className="text-xs text-gray-500 bg-forge-800 px-2 py-1 rounded">Last 7 days</span>
             </div>
-          ))}
-        </div>
-      </section>
+
+            <div className="space-y-3">
+              {topPublishers.map((pub) => (
+                <Link
+                  href="/profile"
+                  key={pub.rank}
+                  className="flex items-center gap-3 p-2 rounded-xl hover:bg-forge-800/70 transition"
+                >
+                  <div className={`w-8 h-8 flex items-center justify-center rounded-full font-bold text-sm ${
+                    pub.rank === 1 ? "bg-yellow-500 text-black" :
+                    pub.rank === 2 ? "bg-gray-300 text-black" :
+                    pub.rank === 3 ? "bg-amber-700 text-white" :
+                    "bg-forge-700 text-gray-300"
+                  }`}>
+                    {pub.rank}
+                  </div>
+                  <div className={`w-9 h-9 rounded-full ${pub.color} flex items-center justify-center text-sm font-bold`}>
+                    {pub.initials}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-medium truncate">{pub.name}</div>
+                    <div className="text-xs text-gray-500">{pub.articles} articles</div>
+                  </div>
+                  <div className="text-sm font-semibold text-forge-accent">
+                    {pub.points}
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            <button className="w-full mt-4 text-sm text-center text-gray-400 hover:text-forge-accent transition">
+              View full leaderboard →
+            </button>
+          </div>
+
+          {/* Quick CTA */}
+          <div className="bg-gradient-to-br from-orange-600/20 to-forge-900 border border-orange-500/30 rounded-2xl p-5 text-center">
+            <p className="font-semibold mb-2">Got a take?</p>
+            <p className="text-sm text-gray-400 mb-4">Write it. Rank it. Own the board.</p>
+            <Link
+              href="/editor"
+              className="inline-block bg-forge-accent hover:bg-forge-accentHover text-white font-medium px-6 py-2.5 rounded-xl transition"
+            >
+              Write Article
+            </Link>
+          </div>
+        </aside>
+      </div>
     </main>
   );
 }
